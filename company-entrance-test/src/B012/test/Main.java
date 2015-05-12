@@ -14,13 +14,15 @@ public class Main {
 
         int n = 0; //行数
         List<String> creditData_sList = new ArrayList<String>();//処理するクレジットカード番号データリスト
-
+       
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
         //====入力処理==========================
         //行数入力
         try {
             boolean isCorrectRowNum = false;
             while (!isCorrectRowNum) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                
                 String line = br.readLine();
 
                 //入力行数を文字列から数字へ変換
@@ -49,7 +51,6 @@ public class Main {
         try {
             int dataCount = 0;
             while (dataCount < n) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 String line = br.readLine();
 
                 //文字数チェック
