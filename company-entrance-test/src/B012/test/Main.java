@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +13,7 @@ public class Main {
     public static void main(String args[]) {
 
         int n = 0; //行数
-        ArrayList<String> creditData_sList = new ArrayList<>();//処理するクレジットカード番号データリスト
+        List<String> creditData_sList = new ArrayList<String>();//処理するクレジットカード番号データリスト
 
         //====入力処理==========================
         //行数入力
