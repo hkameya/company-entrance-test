@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import C016.test.Main;
+
 public class Test_C016 {
 
 	private StandardOutputSnatcher out = new StandardOutputSnatcher();
