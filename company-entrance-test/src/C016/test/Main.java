@@ -3,66 +3,89 @@ package C016.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.regex.Matcher;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Main {
 
-    public static void main(String args[]) {
+	private static Map<String, String> translateMap = new HashMap<String, String>();
 
-        //=====入力==============
-        String S = "";//入力値
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            S = br.readLine();
-        } catch (IOException e) {
-            System.out.println("IOエラー。プログラムを終了します。");
-            System.exit(-1);
-        }
+	private static final Pattern PATTERN = Pattern.compile("^[A-Z0-9]*$");
 
-        //入力チェック
-        if (S.length() < 1 || S.length() > 100) {
-            System.out.println("不正な文字数。プログラムを終了します。");
-            System.exit(-1);
-        }
+	private static void initialTranslateMap() {
 
-        Pattern pattern = Pattern.compile("^[A-Z0-9]*$");
-        Matcher matcher = pattern.matcher(S);
-        if (!matcher.find()) {
-            System.out.println("不正な入力値。プログラムを終了します。");
-            System.exit(-1);
-        }
+		translateMap.put("A", "4");
+		translateMap.put("E", "3");
+		translateMap.put("G", "6");
+		translateMap.put("I", "1");
+		translateMap.put("O", "0");
+		translateMap.put("S", "5");
+	}
 
-        //=====変換処理==========
-        char[] curStr = new char[S.length()];
-        for (int i = 0; i < S.length(); i++) {
-            curStr[i] = S.charAt(i);
-            switch (curStr[i]) {
-            case 'A':
-                curStr[i] = '4';
-                break;
-            case 'E':
-                curStr[i] = '3';
-                break;
-            case 'G':
-                curStr[i] = '6';
-                break;
-            case 'I':
-                curStr[i] = '1';
-                break;
-            case 'O':
-                curStr[i] = '0';
-                break;
-            case 'S':
-                curStr[i] = '5';
-                break;
-            case 'Z':
-                curStr[i] = '2';
-                break;
-            }
-        }
+	static {
 
-        //結果表示
-        System.out.println(String.valueOf(curStr));
-    }
+		initialTranslateMap();
+	}
+
+	/**
+	 * 入力チェック.
+	 * 
+	 * @param inputStr 入力値
+	 */
+	private static void check(String inputStr) {
+
+		if (inputStr.length() < 1 || inputStr.length() > 100) {
+
+			System.out.println("不正な文字数。プログラムを終了します。");
+			System.exit(-1);
+		}
+
+		if (!PATTERN.matcher(inputStr).find()) {
+
+			System.out.println("不正な入力値。プログラムを終了します。");
+			System.exit(-1);
+		}
+	}
+
+	/**
+	 * 変換処理.
+	 * 
+	 * @param inputStr 入力値
+	 * @return String 変換後の値
+	 */
+	private static String translate(String inputStr) {
+
+		for (Map.Entry<String, String> entry : translateMap.entrySet()) {
+
+			inputStr = inputStr.replaceAll(entry.getKey(), entry.getValue());
+		}
+
+		return inputStr;
+	}
+
+	/**
+	 * Main.
+	 * 
+	 * @param args String[]
+	 */
+	public static void main(String args[]) {
+
+		String inputStr = "";// 入力値
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		try {
+			
+			inputStr = br.readLine();
+		} catch (IOException e) {
+			
+			System.out.println("IOエラー。プログラムを終了します。");
+			System.exit(-1);
+		}
+
+		check(inputStr);
+
+		// 結果表示
+		System.out.println(translate(inputStr));
+	}
 }
