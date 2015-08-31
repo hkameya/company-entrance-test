@@ -15,12 +15,6 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<!-- coveralls-maven-plugin -->
-			<plugin>
-				<groupId>org.eluder.coveralls</groupId>
-				<artifactId>coveralls-maven-plugin</artifactId>
-				<version>4.0.0</version>
-			</plugin>
 			<!-- Cobertura -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -32,6 +26,12 @@
 					<!-- aggregated reports for multi-module projects -->
 					<aggregate>true</aggregate>
 				</configuration>
+			</plugin>
+			<!-- coveralls-maven-plugin -->
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.0.0</version>
 			</plugin>
 		</plugins>
 	</build>
